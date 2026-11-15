@@ -1,5 +1,15 @@
 # FLARE AI
 
+## شاهد فيديو المنصة · Watch the demo
+
+[![شاهد عرض FLARE AI — Watch the FLARE AI demo](media/flare-ai-demo.jpg)](https://github.com/cc4958507-ship-it/FLARE-AI/blob/main/media/flare-ai-demo.mp4)
+
+**[اضغط لمشاهدة الفيديو · Watch video](https://github.com/cc4958507-ship-it/FLARE-AI/blob/main/media/flare-ai-demo.mp4)** · [تنزيل MP4 · Download MP4](https://raw.githubusercontent.com/cc4958507-ship-it/FLARE-AI/main/media/flare-ai-demo.mp4)
+
+الفيديو والمستودع متاحان للجميع دون تسجيل دخول. إذا لم يظهر المشغّل في GitHub، افتح رابط تنزيل MP4.
+
+The video and repository are public. If GitHub does not display a player, use the MP4 download link.
+
 A working research prototype based on `FLARE_AI_Full_Implementation.md`, with a React 19 / TypeScript workbench, FastAPI, PostgreSQL persistence, a virtual-clock worker, and an educational deterministic simulation.
 
 واجهة بحثية لاستكشاف الأدلة ومقارنتها، واعتماد خطة مراقبة، وتشغيل محاكاة قابلة لإعادة التشغيل والتفرّع. النتائج الاصطناعية ليست تقييمًا للسلامة أو تصريحًا بالتنفس.
