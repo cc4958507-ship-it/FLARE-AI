@@ -6,9 +6,9 @@ A research workbench that helps users inspect combustion measurements, trace fin
 
 ## Project presentation and demo
 
-**[Read the English presentation (7 slides)](presentation/FLARE-AI-Presentation.pdf)** · **[Watch the English demo](media/flare-ai-demo.mp4)** · **[Download the video](https://raw.githubusercontent.com/cc4958507-ship-it/FLARE-AI/main/media/flare-ai-demo.mp4)**
+**[Read the English presentation (7 slides)](presentation/FLARE-AI-Presentation.pdf)** · **[Watch the English demo](https://github.com/cc4958507-ship-it/FLARE-AI/blob/cf15db32386e618cdbe6461f18bbfb4691b55933/media/flare-ai-demo.mp4)** · **[Download the video](https://raw.githubusercontent.com/cc4958507-ship-it/FLARE-AI/cf15db32386e618cdbe6461f18bbfb4691b55933/media/flare-ai-demo.mp4)**
 
-[![Watch FLARE AI: dataset inspection and source-linked agent review](media/flare-ai-demo.jpg)](media/flare-ai-demo.mp4)
+[![Watch FLARE AI: dataset inspection and source-linked agent review](https://raw.githubusercontent.com/cc4958507-ship-it/FLARE-AI/cf15db32386e618cdbe6461f18bbfb4691b55933/media/flare-ai-demo.jpg)](https://github.com/cc4958507-ship-it/FLARE-AI/blob/cf15db32386e618cdbe6461f18bbfb4691b55933/media/flare-ai-demo.mp4)
 
 The demo is **28.4 seconds**, has **no audio track**, and includes **English on-screen explanations**. The presentation, video and repository are public and can be accessed without signing in. If GitHub does not show a video player, use the download link.
 
