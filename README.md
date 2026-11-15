@@ -1,22 +1,48 @@
 # FLARE AI
 
-**Team KHAYAL** · **[Read the English presentation (7 slides)](presentation/FLARE-AI-Presentation.pdf)**
+**Team KHAYAL | NASA Space Apps | Flame in Freefall**
 
-## شاهد فيديو المنصة · Watch the demo
+A research workbench that helps users inspect combustion measurements, trace findings to their sources, and explore a proposed fire-suppression verification workflow in microgravity.
 
-[![شاهد عرض FLARE AI — Watch the FLARE AI demo](media/flare-ai-demo.jpg)](https://github.com/cc4958507-ship-it/FLARE-AI/blob/main/media/flare-ai-demo.mp4)
+## Project presentation and demo
 
-**[اضغط لمشاهدة الفيديو · Watch video](https://github.com/cc4958507-ship-it/FLARE-AI/blob/main/media/flare-ai-demo.mp4)** · [تنزيل MP4 · Download MP4](https://raw.githubusercontent.com/cc4958507-ship-it/FLARE-AI/main/media/flare-ai-demo.mp4)
+**[Read the English presentation (7 slides)](presentation/FLARE-AI-Presentation.pdf)** · **[Watch the English demo](media/flare-ai-demo.mp4)** · **[Download the video](https://raw.githubusercontent.com/cc4958507-ship-it/FLARE-AI/main/media/flare-ai-demo.mp4)**
 
-الفيديو والمستودع متاحان للجميع دون تسجيل دخول. إذا لم يظهر المشغّل في GitHub، افتح رابط تنزيل MP4.
+[![Watch FLARE AI: dataset inspection and source-linked agent review](media/flare-ai-demo.jpg)](media/flare-ai-demo.mp4)
 
-The video and repository are public. If GitHub does not display a player, use the MP4 download link.
+The demo is **28.4 seconds**, has **no audio track**, and includes **English on-screen explanations**. The presentation, video and repository are public and can be accessed without signing in. If GitHub does not show a video player, use the download link.
 
-A working research prototype based on `FLARE_AI_Full_Implementation.md`, with a React 19 / TypeScript workbench, FastAPI, PostgreSQL persistence, a virtual-clock worker, and an educational deterministic simulation.
+## The problem and our approach
 
-واجهة بحثية لاستكشاف الأدلة ومقارنتها، واعتماد خطة مراقبة، وتشغيل محاكاة قابلة لإعادة التشغيل والتفرّع. النتائج الاصطناعية ليست تقييمًا للسلامة أو تصريحًا بالتنفس.
+Visible flame alone cannot explain every combustion condition in microgravity. Researchers also need measurement context, reliable units, timing information and experimental evidence. FLARE AI brings these into one workbench and keeps missing data and scientific limitations visible.
 
-Supplied research data: `/research-files` provides 80 original assets and three native datasets (62,646 source records / 2,238,087 channel values), with exact paging, chart overviews and agent inspection. See [integration and backup instructions](docs/RESEARCH-DATA-INTEGRATION.md). Unknown channel units and calibration remain explicitly unresolved; the physical simulation has not been calibrated to these records.
+Users browse research sources, select a measurement dataset, inspect its channels and timing flags, and ask a bounded research agent for a source-linked review. A separate educational simulation demonstrates the proposed monitoring and verification workflow. Its synthetic outputs do not establish real-world fire safety or breathing clearance.
+
+## How we actually used NASA data
+
+- **FLEX-007 / PSI-69:** imported 1,112 measurement rows across seven channels, retained missing values and source references, and provided a recorded-observation viewer. NASA cool-flame findings informed the project's focus on evidence beyond visible flame. See the [FLEX import notes](docs/NASA-FLEX-007.md) and [NASA source DOI](https://doi.org/10.60555/mbq8-0451).
+- **Supplied ACME and chamber files:** imported three native datasets containing 62,646 source records and 2,238,087 channel values. The workbench preserves original values and timestamps, supports exact paging and channel plots, and makes dataset statistics available to the measurement-review agent.
+- **Data checks:** converted explicitly documented chamber pressure and temperature units, flagged repeated timestamps, and left undocumented ACME units unresolved. Unit conversion does not establish sensor calibration.
+- **Traceability:** cataloged 80 original research assets with checksums. Native files were supplied by the team; their provenance and licensing still need independent review. Large source assets are kept outside Git and require the [data integration and backup procedure](docs/RESEARCH-DATA-INTEGRATION.md).
+
+The physical simulation has **not** been calibrated against these measurements. Imported observations remain separate from synthetic verification decisions.
+
+## What the demo shows
+
+1. A saved research question enters the persistent agent queue.
+2. The measurement reviewer inspects the attached chamber dataset.
+3. The completed review reports 489 source records, 128 channels and 62,592 measurement values.
+4. Findings retain source references, missing information and scientific limitations.
+
+The application defaults to English and also supports Arabic through its language selector. Running the interactive workbench requires the local setup below; the repository link provides the project materials and code.
+
+## Planned Evaluation
+
+- Compare the proposed verification workflow with camera-only and static-threshold baselines using independent reference measurements; measure false verification, false alarms and detection delay.
+- Evaluate missing channels, frozen readings, replay and timing faults, while distinguishing synthetic tests from real-instrument validation.
+- Test whether suggested additional measurements reduce uncertainty on held-out experiments, with human review before operational use.
+
+These scientific comparisons are planned. Software tests cover application behavior; they do not calibrate instruments or validate a physical model. Experimental calibration, broader agent-grounding evaluation, semantic retrieval and production deployment remain future work.
 
 ## Run with Docker
 
@@ -102,7 +128,7 @@ NASA **FLEX-007 / 20CAL13** is now available under `/datasets`: seven channels o
 
 The November 14 extension adds [measurement imports and advanced synthetic sensor faults](docs/IMPLEMENTATION-PROGRESS.md). Open `/datasets` to import explicitly mapped long-form CSV files. Original CSV, provenance declarations, validation reports and normalized relational measurements are preserved separately from simulation runs. Imported data remains **Replay Only**. General NASA archive adapters, scientific calibration and the other remaining items listed in that progress document are not complete.
 
-This is the connected local P0 research workflow, not a scientific release. Additional PSI formats, experimental calibration, semantic retrieval, real-instrument freeze/replay/skew/saturation diagnostics, live-provider capability/budget certification, asynchronous AI job recovery and production authentication are not implemented. Database records are JSON-backed versioned snapshots with append-only observed frames and events, rather than the full normalized research schema proposed in the document. Lexical retrieval searches the small in-memory source index; PostgreSQL stores the workflow and measurements.
+This is the connected local P0 research workflow, not a scientific release. Additional PSI formats, experimental calibration, semantic retrieval, real-instrument freeze/replay/skew/saturation diagnostics, live-provider capability/budget certification and production authentication remain incomplete. Bounded research agents already have persistent tasks, retry rules, lease recovery and server-side admission controls; see the [agent readiness report](docs/AGENT-READINESS-2026-11-15.md). Database records are JSON-backed versioned snapshots with append-only observed frames and events, rather than the full normalized research schema proposed in the document. Lexical retrieval searches the small in-memory source index; PostgreSQL stores the workflow and measurements.
 
 The generator restarts from seed and event history for each small batch; the one-run horizon is bounded at 240s. This deliberately favors transparent replay over high-throughput streaming. The browser currently loads the complete short run series. Imported real-world data cannot be sent through these synthetic endpoints to obtain a verification claim.
 
