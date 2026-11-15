@@ -1,5 +1,7 @@
 # FLARE AI
 
+**Team KHAYAL** · **[Read the English presentation (7 slides)](presentation/FLARE-AI-Presentation.pdf)**
+
 ## شاهد فيديو المنصة · Watch the demo
 
 [![شاهد عرض FLARE AI — Watch the FLARE AI demo](media/flare-ai-demo.jpg)](https://github.com/cc4958507-ship-it/FLARE-AI/blob/main/media/flare-ai-demo.mp4)
