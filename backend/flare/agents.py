@@ -197,6 +197,24 @@ def validate_note(job, note):
     return result.model_dump()
 
 
+def prompt_steps(checkpoint):
+    """Keep the audit trail intact; reference unchanged dataset fields in prompts."""
+    steps = []
+    datasets = {}
+    for item in checkpoint:
+        result = item['result']
+        if item['action'] == 'inspect_dataset':
+            key = tuple(result.get('source_ids', []))
+            if key in datasets:
+                index, previous = datasets[key]
+                result = {k:v for k,v in result.items() if k == 'source_ids' or k not in previous or v != previous[k]}
+                result = {**result, 'unchanged_fields_from_step':index}
+            else:
+                datasets[key] = (len(steps)+1, result)
+        steps.append({**item, 'result':result})
+    return steps
+
+
 def prompt_for(job):
     tools = {
         'search_evidence':{'query':'search phrase within the selected evidence IDs'},
@@ -225,10 +243,12 @@ def prompt_for(job):
         'General limitations and retention policies are not observations that an event occurred. '
         'For dataset_review you must inspect_dataset; for run_review you must inspect_run. '
         'Do not repeat a tool with the same arguments. Finish before exhausting the step budget. '
+        'In completed steps, unchanged_fields_from_step references a prior step (numbered from 1); '
+        'inherit omitted result fields from that step. Changed fields replace the earlier values. '
         'Write prose in '+('Arabic' if job.input['language'] == 'ar' else 'English')+'. '
         'Task: '+json.dumps({k:v for k,v in job.input.items() if k not in ('max_calls',)},ensure_ascii=False)+
         '\nAvailable tools and argument shapes: '+json.dumps({t:tools[t] for t in available_tools(job)},ensure_ascii=False)+
-        '\nCompleted steps: '+json.dumps(job.checkpoint,ensure_ascii=False)+
+        '\nCompleted steps: '+json.dumps(prompt_steps(job.checkpoint),ensure_ascii=False,separators=(',', ':'))+
         f'\nThis is decision {len(job.checkpoint)+1} of at most {job.max_calls}; use finish on the final decision.'
     )
 

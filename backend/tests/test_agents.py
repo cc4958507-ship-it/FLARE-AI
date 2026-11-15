@@ -9,7 +9,7 @@ import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import select, func
 from flare.api import app
-from flare.agents import JobRequest, create_job, claim_job, process_job, execute_tool, prompt_for
+from flare.agents import JobRequest, create_job, claim_job, process_job, execute_tool, prompt_for, prompt_steps
 from flare.db import Session, AgentJob, LLMCall, Run
 from flare.provider import reserve_call, record_call, request_model, budget_snapshot, ProviderError, utcnow, day_start
 
@@ -244,3 +244,29 @@ def test_budget_day_uses_amman_midnight():
     now=utcnow().replace(hour=22,minute=0,second=0,microsecond=0)
     start=day_start(now)
     assert start.hour==21 and start.date()==now.date()
+
+
+def test_prompt_deduplicates_dataset_metadata_without_changing_saved_results():
+    from copy import deepcopy
+    from types import SimpleNamespace
+    metadata={'source_ids':['dataset:chamber'], 'channel_names':['channel_'+str(i) for i in range(128)],
+              'limitations':['Unverified calibration. '*100],
+              'dataset_counts':{'source_records':489,'channels':128,'measurement_values':62592},
+              'observed_timing_counts':{'duplicate_timestamp_rows':6,'source_time_reversals':0}}
+    overview={**metadata,'channels':[{'channel':str(i),'missing':0,'unit':'Pa'} for i in range(35)]}
+    checkpoint=[{'action':'inspect_dataset','arguments':{},'result':overview}]
+    for i in range(5):
+        checkpoint.append({'action':'inspect_dataset','arguments':{'channel':str(i)},
+                           'result':{**metadata,'channels':[{'channel':str(i),'missing':i,'unit':'K'}]}})
+    original=deepcopy(checkpoint)
+    compact=prompt_steps(checkpoint)
+    assert checkpoint==original
+    for saved, projected in zip(original[1:],compact[1:]):
+        result=dict(projected['result'])
+        reference=result.pop('unchanged_fields_from_step')
+        assert {**original[reference-1]['result'],**result}==saved['result']
+    value=SimpleNamespace(kind='dataset_review',input=request(kind='dataset_review',dataset_id='chamber').model_dump(),checkpoint=checkpoint,max_calls=6)
+    assert len(prompt_for(value))<20000
+    # Results belonging to another dataset never inherit this dataset's metadata.
+    other={**checkpoint[0], 'result':{**overview,'source_ids':['dataset:other']}}
+    assert 'unchanged_fields_from_step' not in prompt_steps([checkpoint[0],other])[1]['result']
