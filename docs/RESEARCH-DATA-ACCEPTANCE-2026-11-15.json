@@ -1,0 +1,55 @@
+{
+  "source_assets": 80,
+  "datasets": [
+    {
+      "id": "data_bee2639ab2538c88601eac7bc032b42efe8c7cf34d4a48ab6f14d324af5",
+      "name": "19056A2_data.csv",
+      "source_records": 31316,
+      "channel_values": 1096060,
+      "channels": 35,
+      "calibration_status": "unverified",
+      "time_warnings": {
+        "source_time_reversal": 1
+      }
+    },
+    {
+      "id": "data_cdcf3ea8a393a7873549bc36fa883f697d609fa2722c7432edbb2298d22",
+      "name": "19056D2_data.csv",
+      "source_records": 30841,
+      "channel_values": 1079435,
+      "channels": 35,
+      "calibration_status": "unverified",
+      "time_warnings": {}
+    },
+    {
+      "id": "data_192548d42094a5e00dfa333756ea13df76ea79e1d4f1d9150780859aa5f",
+      "name": "C039H03_Chamber_Readings.txt",
+      "source_records": 489,
+      "channel_values": 62592,
+      "channels": 128,
+      "calibration_status": "unverified",
+      "time_warnings": {
+        "duplicate_source_timestamp": 10
+      }
+    }
+  ],
+  "live_reviews": [
+    {
+      "id": "job_4afd9e58f71d4167a9721676729218b2",
+      "status": "needs_review",
+      "error_code": "SOURCE_COUNT_MISMATCH",
+      "calls_used": 2,
+      "reported_credits": 0.31
+    },
+    {
+      "id": "job_195a13a741674049a08c26ce4003eab9",
+      "status": "needs_review",
+      "error_code": "UNSUPPORTED_TIMING_CLAIM",
+      "calls_used": 2,
+      "reported_credits": 1.26
+    }
+  ],
+  "backend_tests": 63,
+  "browser_tests": 20,
+  "physics_calibrated": false
+}

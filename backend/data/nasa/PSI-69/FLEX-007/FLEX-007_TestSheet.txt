@@ -1,0 +1,27 @@
+FLEX-007 
+
+TEST PARAMETERS 
+	Test Date: 	Friday, April 10, 2009
+	Test Time: 	13:26:11 (GMT)
+	CIR Test Number: 	20CAL13
+
+AMBIENT ENVIRONMENT 
+	Pressure (atm) = 	 1.00 
+	O2 Mole Fraction = 	 0.21 
+	N2 Mole Fraction = 	 0.79 
+	CO2 Mole Fraction = 	 0.00 
+	He Mole Fraction = 	 0.00 
+	Temperature (K) = 	 300.44 
+
+TEST CONDITIONS 
+	Fuel: 	Heptane 
+	D0  (mm) = 	1.82 
+	kavg  (mm2/s) = 	0.68 
+	Fiber: 	No
+	Dext  (mm) = 	Disruption
+
+COMMENTS:
+
+Free-floating heptane droplet burning in a cabin air (nominally 0.21/0.79 O2/N2), 1.0 atm ambient environment.  The droplet deploys and ignites with little residual velocity and stays within the HiBMS FOV for the entire test.  The droplet burns with a very luminous flame that obscures droplet in HiBMS for a large portion of the test.  The droplet burns to disruption at a small droplet size with the last part of the droplet history obscured by the luminous flame.
+
+

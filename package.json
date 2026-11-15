@@ -1,0 +1,1 @@
+{"name":"flare-ai","private":true,"scripts":{"build":"npm --prefix frontend run build","dev":"bash scripts/dev.sh","test:e2e":"npm --prefix frontend run test:e2e"}}

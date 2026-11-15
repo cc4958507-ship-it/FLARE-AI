@@ -1,0 +1,36 @@
+{
+  "provider": "Kie.ai",
+  "configured_model": "gpt-6-1-sol",
+  "returned_model": "gpt-6.1-sol",
+  "status": "Live explanation verified through application API",
+  "api_status": 200,
+  "evidence_ids_validated": [
+    "flex"
+  ],
+  "provider_reported_usage": {
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cache_write_tokens_details": {
+        "ttl_12h_tokens": 0,
+        "ttl_30m_tokens": 0
+      },
+      "cached_tokens": 0
+    },
+    "total_tokens": 125,
+    "output_tokens": 125,
+    "input_tokens": 0,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "provider_reported_credits_consumed": 0.08,
+  "latency_s": 5.5,
+  "snapshot_id": "evidence_b90c5818efb7",
+  "credential_storage": "Server-only ignored .env with mode 0600; no credential in image, source archives, browser code, or reports.",
+  "tls": "Verification enabled; read-only trusted CA bundle mounted for this managed environment.",
+  "limits": [
+    "Native provider JSON-schema enforcement not verified.",
+    "Usage and credits are provider-reported; billing reconciliation not performed.",
+    "No language model authority over combustion state or interventions."
+  ]
+}

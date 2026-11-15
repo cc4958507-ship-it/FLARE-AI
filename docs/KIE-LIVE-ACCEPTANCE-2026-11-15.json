@@ -1,0 +1,41 @@
+{
+  "scenario_id": "scenario_0f438a5915d9",
+  "evidence_snapshot_id": "evidence_6610f2f91dbe",
+  "language": "ar",
+  "latency_seconds": 7.0,
+  "mode": "live",
+  "model": "gpt-6.1-sol",
+  "response_id": "resp_0cdeccbb246d2153016af9cca4baf487d187092234b0012fe7",
+  "usage": {
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cache_write_tokens_details": {
+        "ttl_12h_tokens": 0,
+        "ttl_30m_tokens": 0
+      },
+      "cached_tokens": 0
+    },
+    "total_tokens": 144,
+    "output_tokens": 144,
+    "input_tokens": 0,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "credits_consumed": 0.09,
+  "claims": [
+    {
+      "text": "تصف ناسا احتراقًا منخفض الحرارة بعد انطفاء اللهب المرئي في بعض تجارب قطرات FLEX، لكن ذلك لا يثبت معيارًا عامًا للانطفاء.",
+      "evidence_ids": [
+        "flex"
+      ],
+      "classification": "Experimental evidence",
+      "limitations": [
+        "بيانات التشغيل الخاصة بالوقود وتركيبه، وقنوات الغاز المعايرة، والتوقيت الخام للقياسات غير متاحة. صور الكاميرا والمعايرة المستقلة غير مرفقتين."
+      ]
+    }
+  ],
+  "message": "Kie evidence explanation; deterministic rules remain independent.",
+  "scope": "One Arabic live explanation through the application API; no autonomous agent loop or billing reconciliation.",
+  "browser_bundle_contains_key": false
+}

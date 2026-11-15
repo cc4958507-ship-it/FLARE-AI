@@ -1,0 +1,7 @@
+# Optional trusted CA bundle for environments with a managed HTTPS proxy.
+services:
+  api:
+    volumes:
+      - ${FLARE_CA_BUNDLE:?Set FLARE_CA_BUNDLE to a trusted CA bundle file}:/run/flare-ca.pem:ro
+    environment:
+      SSL_CERT_FILE: /run/flare-ca.pem

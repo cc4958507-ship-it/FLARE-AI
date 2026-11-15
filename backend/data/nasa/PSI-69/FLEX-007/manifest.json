@@ -1,0 +1,87 @@
+{
+  "title": "NASA FLEX-007 / 20CAL13 - heptane droplet image measurements",
+  "origin": "NASA raw",
+  "processing_level": "NASA-supplied tabulated image-analysis measurements; not raw camera images",
+  "source_url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-69",
+  "doi": "10.60555/mbq8-0451",
+  "license": "CC0-1.0",
+  "license_url": "https://spdx.org/licenses/CC0-1.0.html",
+  "accession": "PSI-69",
+  "source_version": 5,
+  "test_id": "FLEX-007",
+  "cir_test_number": "20CAL13",
+  "retrieved_on": "2026-11-14",
+  "review_status": "source_files_verified_calibration_unverified",
+  "conditions": {
+    "fuel": "Heptane",
+    "pressure_atm": "1.00",
+    "temperature_K": "300.44",
+    "O2_mole_fraction": "0.21",
+    "N2_mole_fraction": "0.79",
+    "initial_diameter_mm": "1.82",
+    "fiber": "No",
+    "source_locator": "FLEX-007_TestSheet.txt: TEST PARAMETERS, AMBIENT ENVIRONMENT, TEST CONDITIONS"
+  },
+  "files": [
+    {
+      "name": "20CAL13_Readme.txt",
+      "sha256": "5369eff68db8f03a43484272ed12800194b4de0dc742c1ac6c4075f070d5a687",
+      "bytes": 526,
+      "psi_file_id": "66eb95aec6ad4bdc12fb1c91",
+      "psi_key": "psi-data/PSI-69/Raw Data/20CAL13_Readme.txt",
+      "file_version": 1,
+      "source_url": "https://psi.nasa.gov/geode-py/ws/studies/PSI-69/download?file=66eb95aec6ad4bdc12fb1c91&version=1&studyVersion=1&redirect=false"
+    },
+    {
+      "name": "FLEX-007_ColorCamData.txt",
+      "sha256": "8e6134316da5d2d69585989b4d54b39fded87ee303a8013ff2a9f017aac02aaa",
+      "bytes": 7588,
+      "psi_file_id": "66eb95acc6ad4bdc12fb127d",
+      "psi_key": "psi-data/PSI-69/Raw Data/FLEX-007_ColorCamData.txt",
+      "file_version": 1,
+      "source_url": "https://psi.nasa.gov/geode-py/ws/studies/PSI-69/download?file=66eb95acc6ad4bdc12fb127d&version=1&studyVersion=1&redirect=false"
+    },
+    {
+      "name": "FLEX-007_DropletData.txt",
+      "sha256": "b23c77bbca5896142369d6b6e2c1c964ce527ea0fbaaebea6de69bb3e7b79f6b",
+      "bytes": 5366,
+      "psi_file_id": "66eb95acc6ad4bdc12fb127c",
+      "psi_key": "psi-data/PSI-69/Raw Data/FLEX-007_DropletData.txt",
+      "file_version": 1,
+      "source_url": "https://psi.nasa.gov/geode-py/ws/studies/PSI-69/download?file=66eb95acc6ad4bdc12fb127c&version=1&studyVersion=1&redirect=false"
+    },
+    {
+      "name": "FLEX-007_LLUVData.txt",
+      "sha256": "253448970446906db3729a2e3bdc298b4936364a6519fcc80749345ff057bfe5",
+      "bytes": 14508,
+      "psi_file_id": "66eb95acc6ad4bdc12fb127e",
+      "psi_key": "psi-data/PSI-69/Raw Data/FLEX-007_LLUVData.txt",
+      "file_version": 1,
+      "source_url": "https://psi.nasa.gov/geode-py/ws/studies/PSI-69/download?file=66eb95acc6ad4bdc12fb127e&version=1&studyVersion=1&redirect=false"
+    },
+    {
+      "name": "FLEX-007_TestSheet.txt",
+      "sha256": "cb748242c189bca59b861d0bb0f406fb7a80aee1710cee363f7620c43d66e2a0",
+      "bytes": 906,
+      "psi_file_id": "66eb95acc6ad4bdc12fb1280",
+      "psi_key": "psi-data/PSI-69/Raw Data/FLEX-007_TestSheet.txt",
+      "file_version": 1,
+      "source_url": "https://psi.nasa.gov/geode-py/ws/studies/PSI-69/download?file=66eb95acc6ad4bdc12fb1280&version=1&studyVersion=1&redirect=false"
+    },
+    {
+      "name": "investigation.json",
+      "sha256": "30404eae8c2aac962bf1fac0509e323893cba0c7be0c6ac5fef677226d794b56",
+      "bytes": 31772,
+      "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-69"
+    }
+  ],
+  "limitations": [
+    "Replay Only. No combustion classification, atmosphere assessment or safety clearance.",
+    "NASA supplied processed/tabulated image measurements; raw camera images are not included in this bundle.",
+    "The test sheet reports a luminous flame obscuring droplet observations and disruption at small droplet size. Missing data is not interpolated.",
+    "20CAL13_Readme.txt labels the results preliminary and lists missing LLLUV and color-camera images.",
+    "No independent calibration or uncertainty validation has been performed.",
+    "Standoff columns have no explicit unit in their headers and are excluded from normalized measurements.",
+    "Zero flame diameter is preserved as a reported value and does not establish absence of combustion."
+  ]
+}

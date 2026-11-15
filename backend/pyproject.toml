@@ -1,0 +1,20 @@
+[project]
+name = "flare-ai"
+version = "0.2.0"
+description = "FLARE AI synthetic combustion research workbench"
+requires-python = ">=3.12"
+dependencies = ["fastapi==0.115.6", "uvicorn==0.34.0", "sqlalchemy==2.0.36", "psycopg[binary]==3.2.3", "alembic==1.14.0", "httpx==0.28.1"]
+
+[project.optional-dependencies]
+test = ["pytest==8.3.4", "hypothesis==6.122.3"]
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["flare*"]

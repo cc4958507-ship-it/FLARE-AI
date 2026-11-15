@@ -1,0 +1,71 @@
+services:
+  db:
+    image: postgres:17.2-alpine@sha256:7e5df973a74872482e320dcbdeb055e178d6f42de0558b083892c50cda833c96
+    environment:
+      POSTGRES_DB: flare
+      POSTGRES_USER: flare
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-flare_local_demo}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U flare"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  api:
+    build: .
+    image: flare-ai:0.2.0
+    volumes:
+      - ./research_data:/app/research:ro
+    ports:
+      - "127.0.0.1:8100:8100"
+    environment:
+      DATABASE_URL: postgresql+psycopg://flare:${POSTGRES_PASSWORD:-flare_local_demo}@db:5432/flare
+      FLARE_RESEARCH_DIR: /app/research
+      AI_MODE: ${AI_MODE:-offline}
+      KIE_API_KEY: ${KIE_API_KEY:-}
+      KIE_BASE_URL: https://api.kie.ai
+      KIE_MODEL: gpt-6-1-sol
+      AI_DAILY_CREDIT_LIMIT: ${AI_DAILY_CREDIT_LIMIT:-50}
+      AI_DAILY_CALL_LIMIT: ${AI_DAILY_CALL_LIMIT:-20}
+      AI_CALL_CREDIT_RESERVE: ${AI_CALL_CREDIT_RESERVE:-10}
+      AI_BUDGET_TIMEZONE: Asia/Amman
+      AI_MAX_OUTPUT_TOKENS: 1200
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8100/api/v1/readiness')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  worker:
+    image: flare-ai:0.2.0
+    command: ["python", "-m", "flare.worker"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://flare:${POSTGRES_PASSWORD:-flare_local_demo}@db:5432/flare
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+  agent-worker:
+    image: flare-ai:0.2.0
+    command: ["python", "-m", "flare.agent_worker"]
+    environment:
+      FLARE_RESEARCH_DIR: /app/research
+      DATABASE_URL: postgresql+psycopg://flare:${POSTGRES_PASSWORD:-flare_local_demo}@db:5432/flare
+      AI_MODE: ${AI_MODE:-offline}
+      KIE_API_KEY: ${KIE_API_KEY:-}
+      KIE_BASE_URL: https://api.kie.ai
+      KIE_MODEL: gpt-6-1-sol
+      AI_DAILY_CREDIT_LIMIT: ${AI_DAILY_CREDIT_LIMIT:-50}
+      AI_DAILY_CALL_LIMIT: ${AI_DAILY_CALL_LIMIT:-20}
+      AI_CALL_CREDIT_RESERVE: ${AI_CALL_CREDIT_RESERVE:-10}
+      AI_BUDGET_TIMEZONE: Asia/Amman
+      AI_MAX_OUTPUT_TOKENS: 1200
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  postgres_data:

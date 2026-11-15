@@ -1,0 +1,94 @@
+export type Investigation = {
+  id: string;
+  title: string;
+  short: string;
+  family: string;
+  type: string;
+  classification: string;
+  gravity: string;
+  fuel: string;
+  geometry: string;
+  channels: string[];
+  raw_available: boolean;
+  summary: string;
+  finding: string;
+  unknowns: string[];
+  source: string;
+  url: string | null;
+  reference: string;
+  note: string;
+  ranking_reason?: string;
+};
+export type Sample = {
+  t: number;
+  flame_presence: number | null;
+  thermal_excess: number | null;
+  co_proxy: number | null;
+  ventilation_proxy: number | null;
+  co2_proxy: number | null;
+  unit: string;
+};
+export type Decision = {
+  t: number;
+  combustion_status: "Danger" | "Uncertain" | "Verified";
+  label: string;
+  atmosphere_status: string;
+  data_integrity: string;
+  required_quality: string;
+  reason_codes: string[];
+  features: Record<string, number>;
+  hold_elapsed_s: number;
+  verified_at: number | null;
+  profile: string;
+  window_start: number;
+  window_end: number;
+  required_channels: string[];
+};
+export type Run = {
+  id: string;
+  name: string;
+  seed: number;
+  t: number;
+  duration: number;
+  speed: 1 | 4 | 16;
+  status: "ready" | "running" | "paused" | "completed";
+  decision: Decision;
+  sample: Sample;
+  created_at: string;
+  parent_id: string | null;
+  branch_t: number | null;
+  plan_id: string;
+  scenario_id: string;
+  fault_at: number | null;
+  faults?: {t: number; channel: string; fault: string}[];
+  interventions: { t: number; action: string }[];
+};
+export type Audit = {
+  seq: number;
+  t: number;
+  type: string;
+  action?: string;
+  effective_t?: number;
+  decision?: Decision;
+  created_at: string;
+};
+export type Plan = {
+  id: string;
+  approved: boolean;
+  required_channels: string[];
+  verification_hold_s: number;
+  danger_clear_s: number;
+  profile_ref: string;
+};
+export type Explanation = {
+  mode: string;
+  message: string;
+  claims: {
+    text: string;
+    evidence_ids: string[];
+    classification: string;
+    limitations: string[];
+  }[];
+  missing_information: string[];
+};
+export type Frame = { sample: Sample; decision: Decision };

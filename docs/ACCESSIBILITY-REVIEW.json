@@ -1,0 +1,12 @@
+{
+  "scope": ["frontend/src/App.tsx", "frontend/src/styles.css"],
+  "method": "Independent source review using supplied Craftwork better-accessibility skill, followed by targeted recheck",
+  "verdict": "Approve for the three source-level findings reviewed",
+  "resolved": [
+    {"criterion":"WCAG 2.1.1", "fix":"Disabled pointer-only canvas legend selection and exposed every observed sample in the native table."},
+    {"criterion":"WCAG 4.1.2", "fix":"Generated a unique dialog heading ID with React useId for each modal."},
+    {"criterion":"WCAG 2.4.3", "fix":"Focused mounted page headings and supplied a main-landmark fallback while loading."}
+  ],
+  "remaining_findings": [],
+  "limits": ["Source review is not manual assistive-technology testing.", "The package's named specialist subskills and report renderer were absent.", "Main-agent automated browser and axe tests are recorded separately in VALIDATION.md."]
+}

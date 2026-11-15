@@ -1,0 +1,710 @@
+{
+  "date": "2026-11-15",
+  "scope": "Three narrow live acceptance cases; not a general capability certification",
+  "jobs": [
+    {
+      "id": "job_a76147dc4735409397a67af8319d8a81",
+      "kind": "dataset_review",
+      "status": "succeeded",
+      "input": {
+        "kind": "dataset_review",
+        "question": "Review the selected NASA FLEX measurements. Inspect the dataset, report missing values and channel counts, and state why these data do not calibrate chemistry or certify combustion safety. Keep the note brief.",
+        "language": "ar",
+        "evidence_ids": [
+          "flex"
+        ],
+        "dataset_id": "data_a26123b5bc4b97dd4c65b095c53ea434da67671ad887085a7f4ff07eec0",
+        "run_id": null,
+        "max_calls": 3
+      },
+      "result": {
+        "summary": "تُظهر مجموعة NASA FLEX-007 / 20CAL13 ما مجموعه 1112 صفًا موزعة على خمس قنوات قياس أساسية: قطر اللهب اللوني (158)، قطر القطرة (141)، موضع القطرة x (177)، موضع القطرة z (177)، وقطر اللهب من LLUV (177). جميع هذه القنوات لا تحتوي قيمًا مفقودة. قناتا zeroed_droplet_x وzeroed_droplet_y تحتويان على 141 قيمة مفقودة من أصل 141 لكل منهما. هذه البيانات هي قياسات صور معالجة ومجدولة وليست صورًا خامًا، وتفتقر إلى معايرة مستقلة والتحقق من عدم اليقين؛ كما أن اللهب المضيء يحجب ملاحظات القطرة وتوجد صور مفقودة وفق القيود المسجلة. لذلك لا تكفي لمعايرة كيمياء الاحتراق أو تقييم الغلاف الجوي، ولا تمنح شهادة سلامة للاحتراق أو تصريحًا تشغيليًا.",
+        "findings": [
+          {
+            "text": "عدد الصفوف المفحوصة 1112. القنوات الأساسية الخمس وأعداد صفوفها هي: 158، 141، 177، 177، و177، وجميعها دون قيم مفقودة.",
+            "source_ids": [
+              "dataset:data_a26123b5bc4b97dd4c65b095c53ea434da67671ad887085a7f4ff07eec0"
+            ],
+            "limitations": [
+              "القياسات مجدولة ومعالجة من NASA وليست صورًا خامًا."
+            ]
+          },
+          {
+            "text": "قناتا zeroed_droplet_x وzeroed_droplet_y تفتقدان جميع القيم: 141 من 141 لكل قناة.",
+            "source_ids": [
+              "dataset:data_a26123b5bc4b97dd4c65b095c53ea434da67671ad887085a7f4ff07eec0"
+            ],
+            "limitations": [
+              "لم تُستكمل القيم المفقودة بالاستيفاء."
+            ]
+          },
+          {
+            "text": "لا تُعاير البيانات كيمياء الاحتراق ولا تُثبت سلامة الاحتراق، لأن الحزمة لا تتضمن معايرة مستقلة أو تحققًا من عدم اليقين، ولا توفر تصنيف احتراق أو تقييمًا للغلاف الجوي أو تخليصًا للسلامة؛ كما أن اللهب المضيء يحجب ملاحظات القطرة وتوجد صور مفقودة.",
+            "source_ids": [
+              "dataset:data_a26123b5bc4b97dd4c65b095c53ea434da67671ad887085a7f4ff07eec0"
+            ],
+            "limitations": [
+              "الاستنتاج محصور في القياسات والقيود المسجلة لهذه الحزمة ولا يستبدل اختبارًا أو تقييم سلامة مستقلًا."
+            ]
+          }
+        ],
+        "missing_information": [
+          "بيانات كيمياء الاحتراق وتركيب الغلاف الجوي.",
+          "معايرة مستقلة وميزانية عدم يقين.",
+          "الصور الخام والتحقق الكامل من الصور المفقودة."
+        ],
+        "next_steps": []
+      },
+      "max_calls": 3,
+      "calls_used": 2,
+      "retries": 0,
+      "error_code": null,
+      "created_at": "2026-11-15T17:19:01.601590+00:00",
+      "updated_at": "2026-11-15T17:24:16.910630+00:00",
+      "available_at": "2026-11-15T17:24:16.910634+00:00",
+      "steps": [
+        {
+          "action": "inspect_dataset",
+          "arguments": {},
+          "reason": "لفحص مجموعة القياسات المحددة وتوثيق القيم المفقودة وأعداد القنوات قبل إعداد المراجعة.",
+          "result": {
+            "source_ids": [
+              "dataset:data_a26123b5bc4b97dd4c65b095c53ea434da67671ad887085a7f4ff07eec0"
+            ],
+            "title": "NASA FLEX-007 / 20CAL13 - heptane droplet image measurements",
+            "origin": "NASA raw",
+            "processing_level": "NASA-supplied tabulated image-analysis measurements; not raw camera images",
+            "doi": "10.60555/mbq8-0451",
+            "examined_rows": 1112,
+            "total_rows": 1112,
+            "channels": [
+              {
+                "channel": "color_flame_diameter",
+                "sensor_id": "FLEX-007_ColorCamData",
+                "rows": 158,
+                "missing": 0,
+                "unit": "m",
+                "min": 0.003688979704632102,
+                "max": 0.03346206812548348,
+                "mean": 0.011602654724497985,
+                "first_t_ms": 1700,
+                "last_t_ms": 7100
+              },
+              {
+                "channel": "droplet_diameter",
+                "sensor_id": "FLEX-007_DropletData",
+                "rows": 141,
+                "missing": 0,
+                "unit": "m",
+                "min": 0.0009591973440290592,
+                "max": 0.001880775453937522,
+                "mean": 0.001370154372942116,
+                "first_t_ms": 0,
+                "last_t_ms": 5367
+              },
+              {
+                "channel": "droplet_x",
+                "sensor_id": "FLEX-007_LLUVData",
+                "rows": 177,
+                "missing": 0,
+                "unit": "m",
+                "min": -0.005466998291015624,
+                "max": 0.000371063232421875,
+                "mean": -0.0030761012190479342,
+                "first_t_ms": 917,
+                "last_t_ms": 6983
+              },
+              {
+                "channel": "droplet_z",
+                "sensor_id": "FLEX-007_LLUVData",
+                "rows": 177,
+                "missing": 0,
+                "unit": "m",
+                "min": -1.408691406249929e-05,
+                "max": 0.01662255859375,
+                "mean": 0.004682943880760063,
+                "first_t_ms": 917,
+                "last_t_ms": 6983
+              },
+              {
+                "channel": "lluv_flame_diameter",
+                "sensor_id": "FLEX-007_LLUVData",
+                "rows": 177,
+                "missing": 0,
+                "unit": "m",
+                "min": 0.0,
+                "max": 0.01440726392885782,
+                "mean": 0.011126804769976822,
+                "first_t_ms": 917,
+                "last_t_ms": 6983
+              },
+              {
+                "channel": "zeroed_droplet_x",
+                "sensor_id": "FLEX-007_DropletData",
+                "rows": 141,
+                "missing": 141,
+                "unit": "m",
+                "min": null,
+                "max": null,
+                "mean": null,
+                "first_t_ms": 0,
+                "last_t_ms": 5367
+              },
+              {
+                "channel": "zeroed_droplet_y",
+                "sensor_id": "FLEX-007_DropletData",
+                "rows": 141,
+                "missing": 141,
+                "unit": "m",
+                "min": null,
+                "max": null,
+                "mean": null,
+                "first_t_ms": 0,
+                "last_t_ms": 5367
+              }
+            ],
+            "limitations": [
+              "Replay Only. No combustion classification, atmosphere assessment or safety clearance.",
+              "NASA supplied processed/tabulated image measurements; raw camera images are not included in this bundle.",
+              "The test sheet reports a luminous flame obscuring droplet observations and disruption at small droplet size. Missing data is not interpolated.",
+              "20CAL13_Readme.txt labels the results preliminary and lists missing LLLUV and color-camera images.",
+              "No independent calibration or uncertainty validation has been performed.",
+              "Standoff columns have no explicit unit in their headers and are excluded from normalized measurements.",
+              "Zero flame diameter is preserved as a reported value and does not establish absence of combustion."
+            ],
+            "verification_eligible": false,
+            "time_reference": {
+              "source_origin_sec": "-1.466667000000598",
+              "rule": "t_rel_ms = round_half_up((source_time_sec - source_origin_sec) * 1000)",
+              "meaning": "Earliest supplied observation, not ignition or extinction time."
+            }
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "type": "queued",
+          "at": "2026-11-15T17:19:01.629019+00:00"
+        },
+        {
+          "seq": 2,
+          "type": "running",
+          "at": "2026-11-15T17:19:01.913409+00:00"
+        },
+        {
+          "seq": 3,
+          "type": "tool_completed",
+          "at": "2026-11-15T17:19:06.323480+00:00",
+          "action": "inspect_dataset",
+          "reason": "لفحص مجموعة القياسات المحددة وتوثيق القيم المفقودة وأعداد القنوات قبل إعداد المراجعة."
+        },
+        {
+          "seq": 4,
+          "type": "running",
+          "at": "2026-11-15T17:19:06.329237+00:00"
+        },
+        {
+          "seq": 5,
+          "type": "needs_review",
+          "at": "2026-11-15T17:19:23.012937+00:00",
+          "error_code": "INVALID_AGENT_OUTPUT"
+        },
+        {
+          "seq": 6,
+          "type": "operator_reprocess_saved_reply",
+          "at": "2026-11-15T17:24:16.468172+00:00",
+          "reason": "Parser now selects final_answer message phase; reuse completed paid response"
+        },
+        {
+          "seq": 7,
+          "type": "running",
+          "at": "2026-11-15T17:24:16.887972+00:00"
+        },
+        {
+          "seq": 8,
+          "type": "succeeded",
+          "at": "2026-11-15T17:24:16.913911+00:00",
+          "action": "finish",
+          "reason": "اكتملت مراجعة مجموعة البيانات وتوثيق القيم المفقودة وأعداد القنوات وحدود استخدامها."
+        }
+      ],
+      "calls": [
+        {
+          "id": "call_143114b7c7ad425da4b41a699fd2ef94",
+          "step": 0,
+          "state": "completed",
+          "credits": 0.03,
+          "error_code": null,
+          "model": "gpt-6.1-sol",
+          "usage": {
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cache_write_tokens_details": {
+                "ttl_12h_tokens": 0,
+                "ttl_30m_tokens": 0
+              },
+              "cached_tokens": 0
+            },
+            "total_tokens": 42,
+            "output_tokens": 42,
+            "input_tokens": 0,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "id": "call_6dd67bd64a144b979a6d5daeb4170f60",
+          "step": 1,
+          "state": "completed",
+          "credits": 0.66,
+          "error_code": null,
+          "model": "gpt-6.1-sol",
+          "usage": {
+            "input_tokens_details": {
+              "cache_write_tokens_details": {
+                "ttl_12h_tokens": 0,
+                "ttl_30m_tokens": 0
+              },
+              "cached_tokens": 4224
+            },
+            "total_tokens": 6532,
+            "output_tokens": 741,
+            "input_tokens": 5791,
+            "output_tokens_details": {
+              "reasoning_tokens": 30
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "job_6325148c07f44adf9094bd317e61e3a2",
+      "kind": "research",
+      "status": "succeeded",
+      "input": {
+        "kind": "research",
+        "question": "Read the selected FLEX evidence. Briefly identify one supported observation and one scientific limitation. Do not infer calibration or safety.",
+        "language": "en",
+        "evidence_ids": [
+          "flex"
+        ],
+        "dataset_id": null,
+        "run_id": null,
+        "max_calls": 2
+      },
+      "result": {
+        "summary": "Selected FLEX evidence reports low-temperature burning after visible flame extinction, with limited generalizability.",
+        "findings": [
+          {
+            "text": "NASA describes low-temperature burning after visible flame extinction in some FLEX droplet experiments.",
+            "source_ids": [
+              "evidence:flex"
+            ],
+            "limitations": [
+              "This does not establish a universal extinction criterion.",
+              "Run-specific fuel and composition, calibrated gas channels, and raw measurement timing are unknown; camera images and independent calibration are not included."
+            ]
+          }
+        ],
+        "missing_information": [
+          "Run-specific fuel and composition",
+          "Calibrated gas channels",
+          "Raw measurement timing",
+          "Camera images and independent calibration"
+        ],
+        "next_steps": []
+      },
+      "max_calls": 2,
+      "calls_used": 2,
+      "retries": 0,
+      "error_code": null,
+      "created_at": "2026-11-15T17:24:38.257834+00:00",
+      "updated_at": "2026-11-15T17:24:50.829360+00:00",
+      "available_at": "2026-11-15T17:24:50.829363+00:00",
+      "steps": [
+        {
+          "action": "read_evidence",
+          "arguments": {
+            "evidence_ids": [
+              "flex"
+            ]
+          },
+          "reason": "Read the selected FLEX evidence to identify a supported observation and a scientific limitation with source provenance.",
+          "result": {
+            "source_ids": [
+              "evidence:flex"
+            ],
+            "records": [
+              {
+                "id": "flex",
+                "title": "Flame Extinguishment Experiment",
+                "classification": "Experimental evidence",
+                "finding": "NASA describes low-temperature burning after visible flame extinction in some FLEX droplet experiments. This does not establish a universal extinction criterion.",
+                "unknowns": [
+                  "Run-specific fuel and composition",
+                  "Calibrated gas channels",
+                  "Raw measurement timing"
+                ],
+                "note": "PSI-69 FLEX-007 / 20CAL13 image-analysis tables are bundled in Measurement imports (CC0-1.0; DOI 10.60555/mbq8-0451). Camera images and independent calibration are not included. These observations do not drive synthetic verification.",
+                "reference": "R2 · PSI-69"
+              }
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "type": "queued",
+          "at": "2026-11-15T17:24:38.269224+00:00"
+        },
+        {
+          "seq": 2,
+          "type": "running",
+          "at": "2026-11-15T17:24:39.001116+00:00"
+        },
+        {
+          "seq": 3,
+          "type": "tool_completed",
+          "at": "2026-11-15T17:24:44.442168+00:00",
+          "action": "read_evidence",
+          "reason": "Read the selected FLEX evidence to identify a supported observation and a scientific limitation with source provenance."
+        },
+        {
+          "seq": 4,
+          "type": "running",
+          "at": "2026-11-15T17:24:44.452057+00:00"
+        },
+        {
+          "seq": 5,
+          "type": "succeeded",
+          "at": "2026-11-15T17:24:50.831330+00:00",
+          "action": "finish",
+          "reason": "The selected evidence supports one observation and identifies scientific limitations without establishing calibration or safety."
+        }
+      ],
+      "calls": [
+        {
+          "id": "call_1b3eec0f162143bdbc88456de9da15fd",
+          "step": 0,
+          "state": "completed",
+          "credits": 0.02,
+          "error_code": null,
+          "model": "gpt-6.1-sol",
+          "usage": {
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cache_write_tokens_details": {
+                "ttl_12h_tokens": 0,
+                "ttl_30m_tokens": 0
+              },
+              "cached_tokens": 0
+            },
+            "total_tokens": 41,
+            "output_tokens": 41,
+            "input_tokens": 0,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "id": "call_2bac295d27f34679b4cb629ae0eccbc9",
+          "step": 1,
+          "state": "completed",
+          "credits": 0.09,
+          "error_code": null,
+          "model": "gpt-6.1-sol",
+          "usage": {
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cache_write_tokens_details": {
+                "ttl_12h_tokens": 0,
+                "ttl_30m_tokens": 0
+              },
+              "cached_tokens": 0
+            },
+            "total_tokens": 151,
+            "output_tokens": 151,
+            "input_tokens": 0,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "job_610f5e8b239b431dbdb21ba17f835a0e",
+      "kind": "run_review",
+      "status": "succeeded",
+      "input": {
+        "kind": "run_review",
+        "question": "Inspect the attached synthetic simulation run. Briefly describe the saved observations and explain why they cannot establish experimental calibration or real-world safety. Do not change the run.",
+        "language": "en",
+        "evidence_ids": [
+          "flex"
+        ],
+        "dataset_id": null,
+        "run_id": "run_7d6398e9634e",
+        "max_calls": 2
+      },
+      "result": {
+        "summary": "The completed synthetic run saves observations with a missing CO channel and an Uncertain decision. These records cannot establish experimental calibration or real-world safety.",
+        "findings": [
+          {
+            "text": "At saved times 236–240, flame_presence is 0, ventilation_proxy is 1, thermal_excess is zero or small, and co2_proxy decreases from approximately 0.03420 to 0.03250 sim_unit. co_proxy is null throughout these observations.",
+            "source_ids": [
+              "run:run_7d6398e9634e"
+            ],
+            "limitations": [
+              "These are synthetic proxy values in simulation units, not experimental measurements; missing CO values do not establish absence of CO."
+            ]
+          },
+          {
+            "text": "At t=240, the saved decision is Uncertain, atmosphere_status is declining, and data_integrity and required_quality are invalid. The reason code is REQUIRED_DATA_INVALID_OR_WARMUP; co_proxy is a required channel, and verified_at is null.",
+            "source_ids": [
+              "run:run_7d6398e9634e"
+            ],
+            "limitations": [
+              "A completed run and a declining atmosphere label do not establish real-world safety or breathing clearance."
+            ]
+          },
+          {
+            "text": "The record identifies synthetic provenance and profile synthetic-v1; its stated limitation explicitly excludes experimental validation and breathing clearance.",
+            "source_ids": [
+              "run:run_7d6398e9634e"
+            ],
+            "limitations": [
+              "The inspected record provides no experimental reference measurements, physical-unit mapping, calibration results, or real-world safety validation."
+            ]
+          }
+        ],
+        "missing_information": [
+          "Experimental measurements and reference standards for calibration.",
+          "Physical interpretation and uncertainty of the simulation proxies.",
+          "Valid CO observations and applicable real-world safety validation."
+        ],
+        "next_steps": []
+      },
+      "max_calls": 2,
+      "calls_used": 2,
+      "retries": 0,
+      "error_code": null,
+      "created_at": "2026-11-15T17:24:55.511012+00:00",
+      "updated_at": "2026-11-15T17:25:10.542619+00:00",
+      "available_at": "2026-11-15T17:25:10.542623+00:00",
+      "steps": [
+        {
+          "action": "inspect_run",
+          "arguments": {},
+          "reason": "Inspect the specified simulation run and its saved observations.",
+          "result": {
+            "source_ids": [
+              "run:run_7d6398e9634e"
+            ],
+            "provenance": "synthetic",
+            "run": {
+              "name": "[Demo] Missing CO channel",
+              "status": "completed",
+              "t": 240,
+              "seed": 42,
+              "profile": "synthetic-v1",
+              "decision": {
+                "t": 240,
+                "combustion_status": "Uncertain",
+                "label": "Uncertain",
+                "atmosphere_status": "declining",
+                "data_integrity": "invalid",
+                "required_quality": "invalid",
+                "reason_codes": [
+                  "REQUIRED_DATA_INVALID_OR_WARMUP"
+                ],
+                "features": {
+                  "thermal_excess": 0.0
+                },
+                "profile": "synthetic-v1",
+                "engine_version": "0.1.0",
+                "verified_at": null,
+                "hold_elapsed_s": 0,
+                "window_start": 230,
+                "window_end": 240,
+                "required_channels": [
+                  "flame_presence",
+                  "thermal_excess",
+                  "co_proxy",
+                  "ventilation_proxy"
+                ],
+                "provenance": "synthetic"
+              },
+              "sample": {
+                "t": 240,
+                "flame_presence": 0.0,
+                "thermal_excess": 0.0,
+                "co_proxy": null,
+                "ventilation_proxy": 1.0,
+                "co2_proxy": 0.03250440224252936,
+                "unit": "sim_unit"
+              },
+              "interventions": [
+                {
+                  "t": 0,
+                  "action": "SIM_STOP_SOURCE"
+                }
+              ],
+              "faults": null
+            },
+            "recent_observations": [
+              {
+                "t": 236,
+                "flame_presence": 0.0,
+                "thermal_excess": 0.0,
+                "co_proxy": null,
+                "ventilation_proxy": 1.0,
+                "co2_proxy": 0.034202720991327595,
+                "unit": "sim_unit"
+              },
+              {
+                "t": 237,
+                "flame_presence": 0.0,
+                "thermal_excess": 0.0,
+                "co_proxy": null,
+                "ventilation_proxy": 1.0,
+                "co2_proxy": 0.034070082780031645,
+                "unit": "sim_unit"
+              },
+              {
+                "t": 238,
+                "flame_presence": 0.0,
+                "thermal_excess": 3.363176571940008e-05,
+                "co_proxy": null,
+                "ventilation_proxy": 1.0,
+                "co2_proxy": 0.03357945881463042,
+                "unit": "sim_unit"
+              },
+              {
+                "t": 239,
+                "flame_presence": 0.0,
+                "thermal_excess": 0.0001426928129547585,
+                "co_proxy": null,
+                "ventilation_proxy": 1.0,
+                "co2_proxy": 0.03320547245503808,
+                "unit": "sim_unit"
+              },
+              {
+                "t": 240,
+                "flame_presence": 0.0,
+                "thermal_excess": 0.0,
+                "co_proxy": null,
+                "ventilation_proxy": 1.0,
+                "co2_proxy": 0.03250440224252936,
+                "unit": "sim_unit"
+              }
+            ],
+            "limitation": "This is synthetic software behavior, not experimental validation or breathing clearance."
+          }
+        }
+      ],
+      "events": [
+        {
+          "seq": 1,
+          "type": "queued",
+          "at": "2026-11-15T17:24:55.516794+00:00"
+        },
+        {
+          "seq": 2,
+          "type": "running",
+          "at": "2026-11-15T17:24:55.866899+00:00"
+        },
+        {
+          "seq": 3,
+          "type": "tool_completed",
+          "at": "2026-11-15T17:24:59.484005+00:00",
+          "action": "inspect_run",
+          "reason": "Inspect the specified simulation run and its saved observations."
+        },
+        {
+          "seq": 4,
+          "type": "running",
+          "at": "2026-11-15T17:24:59.504524+00:00"
+        },
+        {
+          "seq": 5,
+          "type": "succeeded",
+          "at": "2026-11-15T17:25:10.544460+00:00",
+          "action": "finish",
+          "reason": "The required run inspection is complete; report saved observations and limitations without changing the run."
+        }
+      ],
+      "calls": [
+        {
+          "id": "call_c8e95753ea454588b7e5274a51f3ec6d",
+          "step": 0,
+          "state": "completed",
+          "credits": 0.02,
+          "error_code": null,
+          "model": "gpt-6.1-sol",
+          "usage": {
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cache_write_tokens_details": {
+                "ttl_12h_tokens": 0,
+                "ttl_30m_tokens": 0
+              },
+              "cached_tokens": 0
+            },
+            "total_tokens": 41,
+            "output_tokens": 41,
+            "input_tokens": 0,
+            "output_tokens_details": {
+              "reasoning_tokens": 12
+            }
+          }
+        },
+        {
+          "id": "call_05afe55a0b29405182e93456d8a47b1b",
+          "step": 1,
+          "state": "completed",
+          "credits": 0.22,
+          "error_code": null,
+          "model": "gpt-6.1-sol",
+          "usage": {
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cache_write_tokens_details": {
+                "ttl_12h_tokens": 0,
+                "ttl_30m_tokens": 0
+              },
+              "cached_tokens": 0
+            },
+            "total_tokens": 365,
+            "output_tokens": 365,
+            "input_tokens": 0,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "total_requests": 6,
+  "total_reported_credits": 1.04,
+  "budget": {
+    "daily_credit_limit": 50.0,
+    "reported_credits": 1.04,
+    "reserved_credits": 0.0,
+    "per_call_reserve": 10.0,
+    "daily_call_limit": 20,
+    "calls_used_today": 6,
+    "calls_remaining_today": 14,
+    "unknown_calls": 0,
+    "max_output_tokens": 1200,
+    "timezone": "Asia/Amman",
+    "billing_guarantee": false
+  },
+  "billing_reconciled": false,
+  "parser_recovery": "Arabic final_answer reprocessed from saved response without an additional provider call"
+}
